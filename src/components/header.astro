@@ -1,0 +1,239 @@
+---
+import Nightmode from "./nightmode.astro";
+import Social from "./ui/social.astro";
+---
+
+<nav class="border-gray-200 dark:bg-slate-950 bg-white">
+  <div
+    class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-1"
+  >
+    <div><Social /></div>
+    <div class="flex items-center">
+      <a
+        href="tel:03334559090"
+        class="text-sm text-gray-500 dark:text-white hover:underline"
+        >Free Phone : 0333-455-9090</a
+      ><div class="pl-1"><Nightmode /></div>
+    </div>
+  </div>
+</nav>
+
+<nav class="bg-red-700 border-gray-200 dark:border-gray-600">
+  <div
+    class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl py-4"
+  >
+    <a href="/" class="flex items-center">
+      <img src="/emreactlogo.jpeg" class="h-12 mr-3" alt="Flowbite Logo" />
+      <span
+        class="self-center text-2xl font-semibold whitespace-nowrap text-white"
+        >EM React</span
+      >
+    </a>
+    <button
+      data-collapse-toggle="mega-menu-full"
+      type="button"
+      class="inline-flex items-center p-2 ml-1 text-sm text-white rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+      aria-controls="mega-menu-full"
+      aria-expanded="false"
+    >
+      <span class="sr-only">Open main menu</span>
+      <svg
+        class="w-6 h-6"
+        aria-hidden="true"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+        ><path
+          fill-rule="evenodd"
+          d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+          clip-rule="evenodd"></path></svg
+      >
+    </button>
+    <div
+      id="mega-menu-full"
+      class="items-center justify-between font-medium hidden w-full md:flex md:w-auto md:order-1"
+    >
+      <ul
+        class="flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0"
+      >
+        <li>
+          <a
+            href="/"
+            class="block py-2 pl-3 pr-4 text-white rounded hover:bg-slate-800 md:hover:bg-transparent md:p-0"
+            aria-current="page">Home</a
+          >
+        </li>
+        <li>
+          <button
+            id="mega-menu-full-dropdown-button"
+            data-collapse-toggle="mega-menu-full-dropdown"
+            class="flex items-center justify-between w-full py-2 pl-3 pr-4 text-white rounded hover:bg-slate-800 md:hover:bg-transparent md:p-0"
+            >Services <svg
+              class="w-5 h-5 ml-1"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+              ><path
+                fill-rule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clip-rule="evenodd"></path></svg
+            ></button
+          >
+        </li>
+        <li>
+          <a
+            href="/about"
+            class="block py-2 pl-3 pr-4 text-white rounded hover:bg-slate-800 md:hover:bg-transparent md:p-0"
+            >About</a
+          >
+        </li>
+
+        <li>
+          <a
+            href="/contact"
+            class="block py-2 pl-3 pr-4 text-white rounded hover:bg-slate-800 md:hover:bg-transparent md:p-0"
+            >Contact</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div
+    id="mega-menu-full-dropdown"
+    class="hidden mt-1 border-gray-200 shadow-sm bg-gray-50 md:bg-white border-y dark:bg-gray-800 dark:border-gray-600"
+  >
+    <div
+      class="grid max-w-screen-xl px-4 py-5 mx-auto text-gray-900 dark:text-white sm:grid-cols-2 md:px-6"
+    >
+      <ul>
+        <li>
+          <a
+            href="/services/24hrresponse"
+            class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+          >
+            <div class="font-semibold">24 Hour emergency response</div>
+            <span class="text-sm text-gray-500 dark:text-gray-400"
+              >Connect with third-party tools that you're already using.</span
+            >
+          </a>
+        </li>
+        <li>
+          <a
+            href="/services/maintenance"
+            class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+          >
+            <div class="font-semibold">Maintenance Services</div>
+            <span class="text-sm text-gray-500 dark:text-gray-400"
+              >Connect with third-party tools that you're already using.</span
+            >
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
+            class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+          >
+            <div class="font-semibold">Locksmith & Key Cutting Services</div>
+            <span class="text-sm text-gray-500 dark:text-gray-400"
+              >Connect with third-party tools that you're already using.</span
+            >
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
+            class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+          >
+            <div class="font-semibold">Waste Management Services</div>
+            <span class="text-sm text-gray-500 dark:text-gray-400"
+              >Connect with third-party tools that you're already using.</span
+            >
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
+            class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+          >
+            <div class="font-semibold">Electrical Services</div>
+            <span class="text-sm text-gray-500 dark:text-gray-400"
+              >Connect with third-party tools that you're already using.</span
+            >
+          </a>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          <a
+            href="#"
+            class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+          >
+            <div class="font-semibold">Fire & Health & Safety Services</div>
+            <span class="text-sm text-gray-500 dark:text-gray-400"
+              >Connect with third-party tools that you're already using.</span
+            >
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
+            class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+          >
+            <div class="font-semibold">Cleaning Services</div>
+            <span class="text-sm text-gray-500 dark:text-gray-400"
+              >Connect with third-party tools that you're already using.</span
+            >
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
+            class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+          >
+            <div class="font-semibold">Jet Washing Services</div>
+            <span class="text-sm text-gray-500 dark:text-gray-400"
+              >Connect with third-party tools that you're already using.</span
+            >
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
+            class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+          >
+            <div class="font-semibold">Gritting Supplies & services</div>
+            <span class="text-sm text-gray-500 dark:text-gray-400"
+              >Connect with third-party tools that you're already using.</span
+            >
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
+            class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+          >
+            <div class="font-semibold">Shop Outlet And Key Cutting</div>
+            <span class="text-sm text-gray-500 dark:text-gray-400"
+              >Connect with third-party tools that you're already using.</span
+            >
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const button = document.querySelector(
+    '[data-collapse-toggle="mega-menu-full"]'
+  );
+  const megaMenu = document.querySelector("#mega-menu-full-dropdown");
+
+  button?.addEventListener("click", () => {
+    megaMenu?.classList.toggle("hidden");
+  });
+
+  button?.addEventListener("click", () => {
+    megaMenu?.classList.add("hidden");
+  });
+</script>
