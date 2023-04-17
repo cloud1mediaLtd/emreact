@@ -19,12 +19,13 @@ const servicesCollection = defineCollection({
 const aboutCollection = defineCollection({ 
   // The name of your collection
   schema: z.object({
-    title: z.string(),
+    
     description: z.string(),
     image: z.object({
       src: z.string(),
       alt: z.string(),
     }),
+    title: z.string(),
     tags: z.array(z.string()),
 
     
