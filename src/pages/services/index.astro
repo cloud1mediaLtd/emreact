@@ -1,0 +1,55 @@
+---
+import { getCollection } from "astro:content";
+import { Picture } from "@astrojs/image/components";
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+
+
+// Filter team entries with 'draft: false' & date before current date
+const services = await getCollection("services");
+---
+
+<Layout title="Team">
+  <Container>
+
+    <div class="py-20">
+      <ul class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {
+          services.map((service, index) => (
+            <div class="">
+              <a href={`/team/${service.slug}`}>
+                <Picture
+                  src={service.data.image.src}
+                  alt={service.data.image.alt}
+                  sizes="(max-width: 800px) 100vw, 800px"
+                  widths={[200, 400, 800]}
+                  aspectRatio="16:9"
+                  background="#ffffff"
+                  fit="cover"
+                  position="center"
+                  loading={index <= 2 ? "eager" : "lazy"}
+                  decoding={index <= 2 ? "sync" : "async"}
+                  class="w-full rounded-md"
+                />
+                <div class="group">
+                  <div class="" />
+
+                  <div class="mt-4 text-center">
+                    <h2 class="text-lg text-medbg font-bold">
+                      {service.data.title}
+                    </h2>
+                    <h3 class="text-md text-gray-500 dark:text-gray-400">
+                      {service.data.title}
+                    </h3>
+                   
+                    <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
+                  </div>
+                </div>
+              </a>
+            </div>
+          ))
+        }
+      </ul>
+    </div>
+  </Container>
+</Layout>
