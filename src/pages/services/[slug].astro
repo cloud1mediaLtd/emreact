@@ -19,17 +19,22 @@ const { Content } = await entry.render();
 
 <Layout title={entry.data.title}>
   <Container>
+    <div class="grid grid-cols-2 gap-5">
     <div class="mb-8">
+      
       <img
         src={entry.data.image.src}
         alt={entry.data.image.alt}
-        class="object-cover w-full h-48 md:h-96 rounded-lg shadow-lg"
+        class="object-cover w-full rounded-lg shadow-lg"
       />
+      
     </div>
 
-    <h1 class="text-2xl">{entry.data.title}</h1>
-    <div class="py-12">
+    
+    <div class="">
+      <h1 class="text-2xl">{entry.data.title}</h1>
       <Content />
     </div>
+  </div>
   </Container>
 </Layout>

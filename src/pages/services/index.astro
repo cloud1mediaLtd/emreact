@@ -7,13 +7,17 @@ import Container from "@components/container.astro";
 
 // Filter team entries with 'draft: false' & date before current date
 const services = await getCollection("services");
+
+// Sort services by orderid
+services.sort((a, b) => a.data.order - b.data.order);
+
 ---
 
 <Layout title="Our services">
   <Container>
 
     <div class="py-20">
-      <ul class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <ul class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {
           services.map((service, index) => (
             <div class="">
@@ -35,14 +39,14 @@ const services = await getCollection("services");
                   <div class="" />
 
                   <div class="mt-4 text-center">
-                    <h2 class="text-lg text-medbg font-bold">
+                    <h2 class="text-lg text-red-700 font-bold">
                       {service.data.title}
                     </h2>
                     <h3 class="text-md text-gray-500 dark:text-gray-400">
                       {service.data.title}
                     </h3>
                    
-                    <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700" />
+                    
                   </div>
                 </div>
               </a>

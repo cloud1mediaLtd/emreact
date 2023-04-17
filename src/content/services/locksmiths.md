@@ -3,9 +3,10 @@ title: 'Locksmith & Key Cutting Services '
 description: 'This is the first post of my new Astro blog.'
 
 image:
-    src: '/1.png' 
+    src: '/lock.png' 
     alt: 'The Astro logo with the word One.'
 tags: [""]
+order: 3
 ---
 
 At EM React Locksmiths we can provide you with 24/7 locksmith services and provide a range of services and supplies designed to improve the security of your home or business. We are available 24/7 for all types of lock repairs, lock changes, and emergency entry and traditional locksmithing. Our highly skilled locally based locksmiths can provide you with both commercial and residential locksmith services. 

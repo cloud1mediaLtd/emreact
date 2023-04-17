@@ -6,6 +6,7 @@ image:
     src: '/1.png' 
     alt: 'Jet Washing.'
 tags: [""]
+order: 8
 ---
 You can be confident that a cleaning contract with us will keep your business spotless all the time. Our professional, highly qualified cleaning teams will work with you to manage your cleaning contract and business needs. From factories to public facilities- we have got you covered.
 

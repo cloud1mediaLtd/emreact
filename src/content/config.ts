@@ -11,6 +11,7 @@ const servicesCollection = defineCollection({
       alt: z.string(),
     }),
     tags: z.array(z.string()),
+    order: z.number(),
 
     
   }),
