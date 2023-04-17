@@ -9,7 +9,7 @@ import Container from "@components/container.astro";
 const services = await getCollection("services");
 ---
 
-<Layout title="Team">
+<Layout title="Our services">
   <Container>
 
     <div class="py-20">
@@ -17,7 +17,7 @@ const services = await getCollection("services");
         {
           services.map((service, index) => (
             <div class="">
-              <a href={`/team/${service.slug}`}>
+              <a href={`/services/${service.slug}`}>
                 <Picture
                   src={service.data.image.src}
                   alt={service.data.image.alt}
