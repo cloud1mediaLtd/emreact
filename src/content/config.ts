@@ -36,5 +36,5 @@ const aboutCollection = defineCollection({
 //    This key should match your collection directory name in "src/content"
 export const collections = {
   'services': servicesCollection,
-  'about': servicesCollection,
+
 };
