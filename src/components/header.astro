@@ -25,7 +25,7 @@ import Social from "./ui/social.astro";
   <div class="static">
   <div class="absolute -top-8 z-20">
     <a href="/" class="">
-      <img src="/emreactlogo.png" class=" h-28 z-20" alt="Flowbite Logo" />
+      <img id="logo" src="/emreactlogo.png" class=" h-28 z-20" alt="Flowbite Logo" />
 
       
     </a>
@@ -244,3 +244,10 @@ import Social from "./ui/social.astro";
     megaMenu?.classList.add("hidden");
   });
 </script>
+
+<style>
+  #logo {
+
+    filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.4));
+  }
+</style>
