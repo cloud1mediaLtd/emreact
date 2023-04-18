@@ -18,7 +18,7 @@ import Social from "./ui/social.astro";
   </div>
 </nav>
 
-<nav class="bg-gradient-to-r to-red-700 from-red-500 border-gray-200 dark:border-gray-600 relative shadow-lg px-2 md:px-0">
+<nav class="bg-gradient-to-r to-red-700 from-red-500 border-gray-200 dark:border-gray-600 relative shadow-lg px-2 md:px-0 z-30">
   <div
     class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl py-4"
   >
@@ -65,6 +65,15 @@ import Social from "./ui/social.astro";
             aria-current="page">Home</a
           >
         </li>
+        
+        <li>
+          <a
+            href="/about"
+            class="block py-2 pl-3 pr-4 text-white rounded hover:bg-slate-800 md:hover:bg-transparent md:p-0"
+            >About</a
+          >
+        </li>
+
         <li>
           
           <button
@@ -85,13 +94,6 @@ import Social from "./ui/social.astro";
             ></button
           >
         </li>
-        <li>
-          <a
-            href="/about"
-            class="block py-2 pl-3 pr-4 text-white rounded hover:bg-slate-800 md:hover:bg-transparent md:p-0"
-            >About</a
-          >
-        </li>
 
         <li>
           <a
@@ -105,7 +107,7 @@ import Social from "./ui/social.astro";
   </div>
   <div
     id="mega-menu-full-dropdown"
-    class="hidden mt-1 border-gray-200 shadow-sm bg-gray-50 md:bg-white border-y dark:bg-gray-800 dark:border-gray-600"
+    class="hidden mt-1 border-gray-200 shadow-sm bg-gray-50 md:bg-white border-y dark:bg-gray-800 dark:border-gray-600 z-20"
   >
     <div
       class="grid max-w-screen-xl px-4 py-5 mx-auto text-gray-900 dark:text-white sm:grid-cols-2 md:px-6"
