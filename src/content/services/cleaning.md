@@ -1,5 +1,5 @@
 ---
-title: 'Cleaning Services'
+title: 'Cleaning'
 description: 'Cleaning Services.'
 
 image:

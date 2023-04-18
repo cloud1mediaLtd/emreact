@@ -3,7 +3,7 @@ title: 'Jet Washing'
 description: 'Jet Washing.'
 
 image:
-    src: '/1.png' 
+    src: '/jetwash.png' 
     alt: 'Jet Washing.'
 tags: [""]
 order: 8

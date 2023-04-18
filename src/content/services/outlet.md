@@ -3,7 +3,7 @@ title: 'Shop Outlet And Key Cutting'
 description: 'Shop Outlet And Key Cutting.'
 
 image:
-    src: '/1.png' 
+    src: '/outlet.png' 
     alt: 'The Astro logo with the word One.'
 tags: [""]
 order: 10

@@ -3,7 +3,7 @@ title: 'Electrical Services'
 description: 'Electrical Services.'
 
 image:
-    src: '/1.png' 
+    src: '/electrician.png' 
     alt: 'The Astro logo with the word One.'
 tags: [""]
 order: 5

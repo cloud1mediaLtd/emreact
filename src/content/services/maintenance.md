@@ -1,9 +1,9 @@
 ---
-title: 'Maintenance Service'
+title: 'Maintenance'
 description: 'Maintenance Service.'
 
 image:
-    src: '/1.png' 
+    src: '/maintenance2.png' 
     alt: 'The Astro logo with the word One.'
 tags: [""]
 order: 2

@@ -1,9 +1,9 @@
 ---
-title: 'Fire & Health & Safety Services'
+title: 'Fire & Health & Safety'
 description: 'Fire & Health & Safety Services.'
 
 image:
-    src: '/1.png' 
+    src: '/fire.png' 
     alt: 'The Astro logo with the word One.'
 tags: [""]
 order: 6

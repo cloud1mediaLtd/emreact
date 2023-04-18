@@ -1,9 +1,9 @@
 ---
-title: '24 hr Response Services'
+title: '24 hr Response'
 description: 'This is the first post of my new Astro blog.'
 
 image:
-    src: '/1.png' 
+    src: '/247.png' 
     alt: 'The Astro logo with the word One.'
 tags: [""]
 order: 1

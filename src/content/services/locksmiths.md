@@ -1,5 +1,5 @@
 ---
-title: 'Locksmith & Key Cutting Services '
+title: 'Locksmith & Key Cutting'
 description: 'This is the first post of my new Astro blog.'
 
 image:

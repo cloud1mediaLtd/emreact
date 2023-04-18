@@ -1,9 +1,9 @@
 ---
-title: 'Waste Management Services '
+title: 'Waste Management'
 description: 'Waste Management Services.'
 
 image:
-    src: '/1.png' 
+    src: '/waste.png' 
     alt: 'The Astro logo with the word One.'
 tags: [""]
 order: 4

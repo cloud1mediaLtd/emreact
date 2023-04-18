@@ -1,9 +1,9 @@
 ---
-title: 'Gritting Supplies & services'
+title: 'Gritting & Supplies'
 description: 'Gritting Supplies & services.'
 
 image:
-    src: '/1.png' 
+    src: '/gritting.png' 
     alt: 'The Astro logo with the word One.'
 tags: [""]
 order: 9
