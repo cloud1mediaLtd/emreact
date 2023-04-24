@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import Container from "../../components/container.astro";
+import { Picture } from "@astrojs/image/components";
 
 // Generate a new path for every collection entry
 export async function getStaticPaths() {
@@ -19,17 +20,23 @@ const { Content } = await entry.render();
 
 <Layout title={entry.data.title}>
   <Container>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    <div class="">
       <div class="mb-8">
-        <img
+        <Picture
           src={entry.data.image.src}
           alt={entry.data.image.alt}
-          class="object-cover w-full rounded-lg shadow-lg"
+          sizes="(max-width: 1800px) 100vw, 1800px"
+          widths={[200, 400, 800, 1200, 1800]}
+          aspectRatio="16:9"
+          background="#ffffff"
+          fit="cover"
+          position="center"
+          class="object-cover w-full h-48 md:h-96 rounded-lg shadow-lg"
         />
       </div>
 
       <div class="">
-        <h1 class="text-2xl">{entry.data.title}</h1>
+        <h1 class="text-2xl pb-2">{entry.data.title}</h1>
         <Content />
       </div>
     </div>

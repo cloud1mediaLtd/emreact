@@ -9,28 +9,51 @@ import Social from "./ui/social.astro";
   >
     <div></div>
     <div class="flex items-center">
-      <a
-        href="tel:03334559090"
-        class="text-md font-semibold text-gray-500 dark:text-white hover:underline"
-        >Landline: 0333-455-9090</a
-      >
+      <ul class="flex">
+        <li>
+          <a
+            href="tel:00443334559090"
+            class="text-md font-semibold text-gray-500 dark:text-white hover:underline"
+            >Landline: 0333-455-9090</a
+          >
+        </li>
+        <li>
+          <a
+            href="tel:00447907019830"
+            class="hidden md:block text-md font-semibold text-gray-500 dark:text-white hover:underline pl-5"
+            >24hr line 1: 0790-701-9830</a
+          >
+        </li>
+        <li>
+          <a
+            href="tel:00447731951808"
+            class="hidden md:block text-md font-semibold text-gray-500 dark:text-white hover:underline pl-5"
+            >24hr line 2: 0773-195-1808</a
+          >
+        </li>
+      </ul>
     </div>
   </div>
 </nav>
 
-<nav class="bg-gradient-to-r to-red-700 from-red-500 border-gray-200 dark:border-gray-600 relative shadow-lg px-2 md:px-0 z-30">
+<nav
+  class="bg-gradient-to-r to-red-700 from-red-500 border-gray-200 dark:border-gray-600 relative shadow-lg px-2 md:px-0 z-30"
+>
   <div
     class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl py-4"
   >
-  <div class="static">
-  <div class="absolute -top-8 z-20">
-    <a href="/" class="">
-      <img id="logo" src="/emreactlogo.png" class=" h-28 z-20" alt="Flowbite Logo" />
-
-      
-    </a>
-  </div>
-</div>
+    <div class="static">
+      <div class="absolute -top-8 z-20">
+        <a href="/" class="">
+          <img
+            id="logo"
+            src="/emreactlogo.png"
+            class="h-28 z-20"
+            alt="Flowbite Logo"
+          />
+        </a>
+      </div>
+    </div>
     <button
       data-collapse-toggle="mega-menu-full"
       type="button"
@@ -65,7 +88,7 @@ import Social from "./ui/social.astro";
             aria-current="page">Home</a
           >
         </li>
-        
+
         <li>
           <a
             href="/about"
@@ -75,14 +98,13 @@ import Social from "./ui/social.astro";
         </li>
 
         <li>
-          
           <button
             id="mega-menu-full-dropdown-button"
             data-collapse-toggle="mega-menu-full-dropdown"
             type="button"
-            
             class="flex items-center justify-between w-full py-2 pl-3 pr-4 text-white rounded hover:bg-slate-800 md:hover:bg-transparent md:p-0"
-            ><a href="/services">Services</a>  <svg
+            ><a href="/services">Services</a>
+            <svg
               class="w-5 h-5 ml-1"
               fill="currentColor"
               viewBox="0 0 20 20"
@@ -119,9 +141,6 @@ import Social from "./ui/social.astro";
             class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <div class="font-semibold">24 Hour emergency response</div>
-            <span class="text-sm text-gray-500 dark:text-gray-400"
-              >Connect with third-party tools that you're already using.</span
-            >
           </a>
         </li>
         <li>
@@ -130,9 +149,6 @@ import Social from "./ui/social.astro";
             class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <div class="font-semibold">Maintenance Services</div>
-            <span class="text-sm text-gray-500 dark:text-gray-400"
-              >Connect with third-party tools that you're already using.</span
-            >
           </a>
         </li>
         <li>
@@ -141,9 +157,6 @@ import Social from "./ui/social.astro";
             class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <div class="font-semibold">Locksmith & Key Cutting Services</div>
-            <span class="text-sm text-gray-500 dark:text-gray-400"
-              >Connect with third-party tools that you're already using.</span
-            >
           </a>
         </li>
         <li>
@@ -152,9 +165,6 @@ import Social from "./ui/social.astro";
             class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <div class="font-semibold">Waste Management Services</div>
-            <span class="text-sm text-gray-500 dark:text-gray-400"
-              >Connect with third-party tools that you're already using.</span
-            >
           </a>
         </li>
         <li>
@@ -163,9 +173,6 @@ import Social from "./ui/social.astro";
             class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <div class="font-semibold">Electrical Services</div>
-            <span class="text-sm text-gray-500 dark:text-gray-400"
-              >Connect with third-party tools that you're already using.</span
-            >
           </a>
         </li>
       </ul>
@@ -176,9 +183,6 @@ import Social from "./ui/social.astro";
             class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <div class="font-semibold">Fire & Health & Safety Services</div>
-            <span class="text-sm text-gray-500 dark:text-gray-400"
-              >Connect with third-party tools that you're already using.</span
-            >
           </a>
         </li>
         <li>
@@ -187,9 +191,6 @@ import Social from "./ui/social.astro";
             class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <div class="font-semibold">Cleaning Services</div>
-            <span class="text-sm text-gray-500 dark:text-gray-400"
-              >Connect with third-party tools that you're already using.</span
-            >
           </a>
         </li>
         <li>
@@ -198,9 +199,6 @@ import Social from "./ui/social.astro";
             class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <div class="font-semibold">Jet Washing Services</div>
-            <span class="text-sm text-gray-500 dark:text-gray-400"
-              >Connect with third-party tools that you're already using.</span
-            >
           </a>
         </li>
         <li>
@@ -209,9 +207,6 @@ import Social from "./ui/social.astro";
             class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <div class="font-semibold">Gritting Supplies & services</div>
-            <span class="text-sm text-gray-500 dark:text-gray-400"
-              >Connect with third-party tools that you're already using.</span
-            >
           </a>
         </li>
         <li>
@@ -220,9 +215,6 @@ import Social from "./ui/social.astro";
             class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <div class="font-semibold">Shop Outlet And Key Cutting</div>
-            <span class="text-sm text-gray-500 dark:text-gray-400"
-              >Connect with third-party tools that you're already using.</span
-            >
           </a>
         </li>
       </ul>
@@ -247,7 +239,6 @@ import Social from "./ui/social.astro";
 
 <style>
   #logo {
-
     filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.4));
   }
 </style>
