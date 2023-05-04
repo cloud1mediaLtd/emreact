@@ -12,12 +12,6 @@ const posts = await getServices();
 interface Props {
   post: Post;
 }
-
-// Filter team entries with 'draft: false' & date before current date
-const services = await getCollection("services");
-
-// Sort services by orderid
-services.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <Layout title="Our services">

@@ -52,20 +52,20 @@ const post = await getService(slug);
         )
       }
 
-      <div class="mx-auto max-w-[735px] my-8 pb-8 text-center border-b">
+      <div class="mx-auto my-8 pb-8 border-b">
         <span
           class="uppercase tracking-wider text-sm font-medium text-gray-500 dark:text-gray-400"
         >
         </span>
         <h1
-          class="text-4xl lg:text-5xl prose font-bold lg:tracking-tight mt-1 lg:leading-tight text-medbg"
+          class="text-4xl lg:text-5xl prose text-center font-bold lg:tracking-tight mt-1 lg:leading-tight text-medbg"
         >
           {post.title}
         </h1>
       </div>
 
       <div
-        class="mx-auto prose prose-lg dark:prose-invert mt-6 text-gray-500 dark:text-gray-400 pb-12"
+        class="mx-auto prose prose-2xl dark:prose-invert mt-6 text-gray-500 dark:text-gray-400 pb-12"
       >
         <PortableText value={post.body} />
       </div>

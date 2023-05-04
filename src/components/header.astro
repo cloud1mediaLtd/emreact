@@ -1,11 +1,15 @@
 ---
 import Nightmode from "./nightmode.astro";
 import Social from "./ui/social.astro";
+
+import { Post, getServices } from "@utils/sanity";
+
+const services = await getServices();
 ---
 
 <nav class="border-gray-200 dark:bg-slate-950 bg-gray-50 px-2 md:px-0">
   <div
-    class="flex flex-wrap h-11 justify-between items-center mx-auto max-w-screen-xl p-1"
+    class="flex flex-wrap h-11 justify-between items-center mx-auto max-w-screen-xl py-2 md:px-5"
   >
     <div></div>
     <div class="flex items-center">
@@ -40,7 +44,7 @@ import Social from "./ui/social.astro";
   class="bg-gradient-to-r to-red-700 from-red-500 border-gray-200 dark:border-gray-600 relative shadow-lg px-2 md:px-0 z-30"
 >
   <div
-    class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl py-4"
+    class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl py-4 px-5 lg:px"
   >
     <div class="static">
       <div class="absolute -top-8 z-20">
@@ -132,91 +136,21 @@ import Social from "./ui/social.astro";
     class="hidden mt-1 border-gray-200 shadow-sm bg-gray-50 md:bg-white border-y dark:bg-gray-800 dark:border-gray-600 z-20"
   >
     <div
-      class="grid max-w-screen-xl px-4 py-5 mx-auto text-gray-900 dark:text-white sm:grid-cols-2 md:px-6"
+      class="grid max-w-screen-xl px-4 py-5 mx-auto text-gray-900 dark:text-white md:px-6"
     >
-      <ul>
-        <li>
-          <a
-            href="/services/24hrresponse"
-            class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
-          >
-            <div class="font-semibold">24 Hour emergency response</div>
-          </a>
-        </li>
-        <li>
-          <a
-            href="/services/maintenance"
-            class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
-          >
-            <div class="font-semibold">Maintenance Services</div>
-          </a>
-        </li>
-        <li>
-          <a
-            href="/services/locksmiths"
-            class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
-          >
-            <div class="font-semibold">Locksmith & Key Cutting Services</div>
-          </a>
-        </li>
-        <li>
-          <a
-            href="/services/waste"
-            class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
-          >
-            <div class="font-semibold">Waste Management Services</div>
-          </a>
-        </li>
-        <li>
-          <a
-            href="/services/electricalservices"
-            class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
-          >
-            <div class="font-semibold">Electrical Services</div>
-          </a>
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <a
-            href="/services/fire"
-            class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
-          >
-            <div class="font-semibold">Fire & Health & Safety Services</div>
-          </a>
-        </li>
-        <li>
-          <a
-            href="/services/cleaning"
-            class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
-          >
-            <div class="font-semibold">Cleaning Services</div>
-          </a>
-        </li>
-        <li>
-          <a
-            href="/services/jetwashing"
-            class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
-          >
-            <div class="font-semibold">Jet Washing Services</div>
-          </a>
-        </li>
-        <li>
-          <a
-            href="/services/gritting"
-            class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
-          >
-            <div class="font-semibold">Gritting Supplies & services</div>
-          </a>
-        </li>
-        <li>
-          <a
-            href="/services/outlet"
-            class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
-          >
-            <div class="font-semibold">Shop Outlet And Key Cutting</div>
-          </a>
-        </li>
+      <ul class="grid sm:grid-cols-2">
+        {
+          services.map((service) => (
+            <li>
+              <a
+                href={`/services/${service.slug.current}`}
+                class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                <div class="font-semibold">{service.title}</div>
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </div>
   </div>
