@@ -3,6 +3,15 @@ import { getCollection } from "astro:content";
 import { Picture } from "@astrojs/image/components";
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
+import { urlFor } from "../../utils/image";
+
+import { Post, getServices } from "@utils/sanity";
+
+const posts = await getServices();
+
+interface Props {
+  post: Post;
+}
 
 // Filter team entries with 'draft: false' & date before current date
 const services = await getCollection("services");
@@ -13,43 +22,34 @@ services.sort((a, b) => a.data.order - b.data.order);
 
 <Layout title="Our services">
   <Container>
-    <div class="">
-      <h1
-        class="mb-12 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl text-center"
-      >
-        Our <span
-          class="text-transparent bg-clip-text bg-gradient-to-r to-red-700 from-red-500"
-          >Services</span>
-      </h1>
-      <ul class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        {
-          services.map((service, index) => (
-            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
-              <a href={`/services/${service.slug}`}>
-                <Picture
-                  src={service.data.image.src}
-                  alt={service.data.image.alt}
-                  sizes="(max-width: 800px) 100vw, 800px"
-                  widths={[200, 400, 800]}
-                  aspectRatio="16:9"
-                  background="#ffffff"
-                  fit="cover"
-                  position="center"
-                  loading={index <= 2 ? "eager" : "lazy"}
-                  decoding={index <= 2 ? "sync" : "async"}
-                  class="w-full rounded-md"
-                />
+    <ul class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      {
+        posts.map((service, index) => (
+          <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
+            <a href={`/services/${service.slug.current}`}>
+              <Picture
+                src={urlFor(service.mainImage).url()}
+                alt={service.alt}
+                sizes="(max-width: 800px) 100vw, 800px"
+                widths={[200, 400, 800]}
+                aspectRatio="16:9"
+                background="#ffffff"
+                fit="cover"
+                position="center"
+                loading={index <= 2 ? "eager" : "lazy"}
+                decoding={index <= 2 ? "sync" : "async"}
+                class="w-full rounded-md"
+              />
 
-                <div class="py-4 text-center">
-                  <h2 class="text-xl text-gray-700 dark:text-gray-50 font-bold">
-                    {service.data.title}
-                  </h2>
-                </div>
-              </a>
-            </div>
-          ))
-        }
-      </ul>
-    </div>
+              <div class="py-4 text-center">
+                <h2 class="text-xl text-gray-700 dark:text-gray-50 font-bold">
+                  {service.title}
+                </h2>
+              </div>
+            </a>
+          </div>
+        ))
+      }
+    </ul>
   </Container>
 </Layout>

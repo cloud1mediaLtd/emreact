@@ -3,42 +3,72 @@ import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import Container from "../../components/container.astro";
 import { Picture } from "@astrojs/image/components";
+import { getService, getServices } from "@utils/sanity";
+import { getPosts, getPost } from "@utils/sanity";
+import { urlFor } from "../../utils/image";
+import { PortableText } from "astro-portabletext";
+import type { Params } from "astro";
 
-// Generate a new path for every collection entry
 export async function getStaticPaths() {
-  const services = await getCollection("services");
-  return services.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
+  const posts = await getServices();
+  return posts.map((post) => ({
+    params: { slug: post.slug.current },
   }));
 }
 
-// Get the entry directly from the prop on render
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { slug } = Astro.params as Params;
+
+const post = await getService(slug);
 ---
 
-<Layout title={entry.data.title}>
+<Layout title={post.title!}>
   <Container>
-    <div class="">
-      <div class="mb-8">
-        <Picture
-          src={entry.data.image.src}
-          alt={entry.data.image.alt}
-          sizes="(max-width: 1800px) 100vw, 1800px"
-          widths={[200, 400, 800, 1200, 1800]}
-          aspectRatio="16:9"
-          background="#ffffff"
-          fit="cover"
-          position="center"
-          class="object-cover w-full h-48 md:h-96 rounded-lg shadow-lg"
-        />
+    <section class="items-center">
+      {
+        post.mainImage ? (
+          <>
+            <Picture
+              src={urlFor(post.mainImage).url()}
+              alt="Cover image"
+              sizes="(max-width: 800px) 100vw, 800px"
+              widths={[200, 400, 800]}
+              aspectRatio="16:9"
+              background="#ffffff"
+              fit="cover"
+              position="center"
+              class="rounded overflow-hidden h-auto z-0 mx-auto pt-12"
+            />
+          </>
+        ) : (
+          <div class="flex items-center col-span-1 h-full w-full bg-gray-500">
+            <div class="content-center">
+              <img
+                class=""
+                src="/fa2b3c00-2423-4c15-be39-4d4beda7092d.webp"
+                alt=""
+              />
+            </div>
+          </div>
+        )
+      }
+
+      <div class="mx-auto max-w-[735px] my-8 pb-8 text-center border-b">
+        <span
+          class="uppercase tracking-wider text-sm font-medium text-gray-500 dark:text-gray-400"
+        >
+        </span>
+        <h1
+          class="text-4xl lg:text-5xl prose font-bold lg:tracking-tight mt-1 lg:leading-tight text-medbg"
+        >
+          {post.title}
+        </h1>
       </div>
 
-      <div class="">
-        <h1 class="text-2xl pb-2">{entry.data.title}</h1>
-        <Content />
+      <div
+        class="mx-auto prose prose-lg dark:prose-invert mt-6 text-gray-500 dark:text-gray-400 pb-12"
+      >
+        <PortableText value={post.body} />
       </div>
-    </div>
+    </section>
   </Container>
 </Layout>
