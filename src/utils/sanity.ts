@@ -59,6 +59,10 @@ export async function getService(slug: string): Promise<Service> {
   );
 }
 
+export async function getHero(): Promise<Hero> {
+  return await client.fetch(groq`*[_type == "hero"][0]`);
+}
+
 export interface Service {
   _type: "service";
   _createdAt: string;
@@ -70,4 +74,13 @@ export interface Service {
   categories: Array<string>;
   readTime: string;
   alt: string;
+}
+
+export interface Hero {
+  _type: "hero";
+  title?: string;
+  mainImage?: ImageAsset;
+  paragraph?: string;
+  linkA?: string;
+  linkB?: string;
 }

@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params as Params;
 
-const post = await getService(slug);
+const post = await getService(slug?.toString()!);
 ---
 
 <Layout title={post.title!}>
