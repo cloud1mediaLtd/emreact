@@ -2,14 +2,18 @@
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
 import { Picture } from "@astrojs/image/components";
+import { getAbout } from "@utils/sanity";
+import { urlFor } from "../utils/image";
+
+const about = await getAbout();
 ---
 
 <Layout title="About">
   <Container>
     <div class="mb-8">
       <Picture
-        src="/2.png"
-        alt="illustrationsteelpan.png"
+        src={urlFor(about.mainImage).url()}
+        alt={about.alt}
         sizes="(max-width: 1800px) 100vw, 1800px"
         widths={[200, 400, 800, 1200, 1800]}
         aspectRatio="16:9"
@@ -24,82 +28,34 @@ import { Picture } from "@astrojs/image/components";
     >
       <span
         class="text-transparent bg-clip-text bg-gradient-to-r to-red-600 from-red-400"
-        >Competent solutions</span
-      > for all your property requirements.
+        >{about.titlePart1}</span
+      >
+      {about.titlePart2}
     </h1>
 
     <p class="mb-3 text-lg text-gray-500 md:text-xl dark:text-gray-400">
-      We are a company that prides itself on the standard of the services we
-      supply to our clients. Offering a bespoke solution to your property and
-      maintenance works, urgent and non-urgent.
+      {about.subTitle}
     </p>
 
     <p class="my-4 text-lg text-gray-600 dark:text-gray-400">
-      We provide great service and amazing workmanship to suit each of our
-      client’s needs. Our property services urgent call out and non-urgent
-      services offer a friendly, reliable, and competent solution to all your
-      property requirements. Each of our highly experienced react officers,
-      project managers, and specialist tradesmen work hand-in-hand to form and
-      supply an unrivalled level of service. We provide knowledgeable,
-      proficient, and out of hours services. Our professional, friendly, and
-      trustworthy personnel provide an excellent level of service. Our service
-      to commercial residential and block/ estate management facilities and can
-      be tailored to meet each of our client’s needs. Our team brings together
-      over 20 years’ experience working along with residential and commercial
-      property managers.
+      {about.excerpt}
     </p>
 
     <h2 class="text-4xl font-extrabold dark:text-white">About Us</h2>
     <p class="my-4 text-lg text-gray-600 dark:text-gray-400">
-      EM React Limited is a new and exciting company. We specialize in block &
-      estate management facilities and we offer a range of specialist services
-      tailored to each client. We provide urgent, reactive, pre-planned, and
-      contracted works in the North, Northwest & Midlands, with our head office
-      is based in Manchester. We have 12 reactive vehicles, each equipped with
-      the most up-to-date equipment required daily, and also with CCTV, work &
-      safety lighting, and health & safety equipment to ensure our clients and
-      staff are safe and protected at all times. Besides, we also have 3
-      specialized waste removal response vehicles, and our command units are
-      fitted with advanced equipment such as night owl, live CCTV, search and
-      work lights, large external TV screens, external awnings, live computers,
-      large internal plasma, 9ka generator, along with staff facilities allowing
-      us to deal with all cases and sizes of emergencies. Our team is all fully
-      uniformed, DBS checked and carry ID cards. We are equipped with body
-      cameras, radio systems and crucially all our team has personal safety
-      equipment and first aid kits. Our team is trained in their trades as well
-      as first aid, fire marshalling, and health & safety. We supply before and
-      after photos of all work undertaken. We are fully insured to complete
-      work. We are committed to delivering products of the highest quality
-      across all of our services to clients through our quality policy,
-      continuous development, implementation, and continual improvement of our
-      trades. Moreover, we are committed to the reduction of pollution and the
-      protection of the environment through our ecologically friendly policies.
-      We are committed to delivering high-quality services to our clients
-      through our quality of services
+      {about.aboutBody}
     </p>
 
     <h2 class="text-4xl font-extrabold dark:text-white">Method Statement</h2>
     <p class="my-4 text-lg text-gray-600 dark:text-gray-400">
-      Our focal point is the health, safety, and welfare of our employees,
-      clients, contractors, and other individuals who may be affected by our
-      business operations. We use the international standard BS OHSAS 18001:2007
-      as the driver for our continuous safety system. This is also supported by
-      an annual program of internal and UKAS accredited external audits,
-      management reviews to continually monitor its effectiveness and our health
-      and safety performance.
+      {about.methodBody}
     </p>
 
     <h2 class="text-4xl font-extrabold dark:text-white">
       Environmental statement
     </h2>
     <p class="my-4 text-lg text-gray-600 dark:text-gray-400">
-      EM React Limited is committed to the reduction of pollution and protection
-      of the environment through our ecologically friendly policies. The
-      development, implementation, and continual improvement of our quality and
-      environmental management system will, in turn, reduce our carbon
-      footprint. In our efforts to continue to observe our footprint and how to
-      reduce the environmental impact of our people, activities, and operations
-      frequently by reviewing our policy annually/quarterly, etc.
+      {about.environmentBody}
     </p>
   </Container>
 </Layout>
