@@ -67,6 +67,10 @@ export async function getAbout(): Promise<About> {
   return await client.fetch(groq`*[_type == "about"][0]`);
 }
 
+export async function getContact(): Promise<Contact> {
+  return await client.fetch(groq`*[_type == "contact"][0]`);
+}
+
 export interface Service {
   _type: "service";
   _createdAt: string;
@@ -101,4 +105,13 @@ export interface About {
   aboutBody: string;
   methodBody: string;
   environmentBody: string;
+}
+
+export interface Contact {
+  _type: "contact";
+  line1?: string;
+  line2?: string;
+  line3?: string;
+  email?: string;
+  address?: string;
 }

@@ -2,9 +2,10 @@
 import Nightmode from "./nightmode.astro";
 import Social from "./ui/social.astro";
 
-import { Post, getServices } from "@utils/sanity";
+import { getContact, getServices } from "@utils/sanity";
 
 const services = await getServices();
+const contact = await getContact();
 ---
 
 <nav class="border-gray-200 dark:bg-slate-950 bg-gray-50 px-2 md:px-0">
@@ -16,23 +17,23 @@ const services = await getServices();
       <ul class="flex">
         <li>
           <a
-            href="tel:00443334559090"
+            href={`tel:${contact.line1}`}
             class="text-md font-semibold text-gray-500 dark:text-white hover:underline"
-            >Landline: 0333-455-9090</a
+            >Landline: {contact.line1}</a
           >
         </li>
         <li>
           <a
-            href="tel:00447907019830"
+            href={`tel:${contact.line2}`}
             class="hidden md:block text-md font-semibold text-gray-500 dark:text-white hover:underline pl-5"
-            >24hr line 1: 0790-701-9830</a
+            >24hr line 1: {contact.line2}</a
           >
         </li>
         <li>
           <a
-            href="tel:00447731951808"
+            href={`tel:${contact.line3}`}
             class="hidden md:block text-md font-semibold text-gray-500 dark:text-white hover:underline pl-5"
-            >24hr line 2: 0773-195-1808</a
+            >24hr line 2: {contact.line3}</a
           >
         </li>
       </ul>

@@ -1,8 +1,12 @@
 ---
+import { getContact } from "@utils/sanity";
 import Nightmode from "./nightmode.astro";
 import Social from "./ui/social.astro";
 
 import { Icon } from "astro-icon";
+
+// get the contact data
+const contact = await getContact();
 ---
 
 <footer class="bg-gray-100 dark:bg-red-700">
@@ -23,25 +27,25 @@ import { Icon } from "astro-icon";
           <div class="block content-center flex-wrap space-y-3">
             <div class="flex items-center space-x-2">
               <Icon class="w-4 h-4" name="ic:baseline-add-ic-call" /><a
-                href="tel:+443334559090"
-                >Free Phone: 0333-455-9090
+                href={`tel:${contact.line1}`}
+                >Free Phone: {contact.line1}
               </a>
             </div>
             <div class="flex items-center space-x-2">
               <Icon class="w-4 h-4" name="ic:baseline-add-ic-call" /><a
-                href="tel:+447907019830"
-                >24 Hour Line 1: 0790-701-9830
+                href={`tel:${contact.line2}`}
+                >24 Hour Line 1: {contact.line2}
               </a>
             </div>
             <div class="flex items-center space-x-2">
               <Icon class="w-4 h-4" name="ic:baseline-add-ic-call" /><a
-                href="tel:+447731951808 "
-                >24 Hour Line 2: 0773-195-1808
+                href={`tel:${contact.line3}`}
+                >24 Hour Line 2: {contact.line3}
               </a>
             </div>
             <div class="flex items-center space-x-2">
               <Icon class="w-4 h-4" name="ic:baseline-chat" />
-              <a href="mailto:info@medastra.co.uk">urgent@emreact.co.uk</a>
+              <a href={`mailto:${contact.email}`}>{contact.email}</a>
             </div>
           </div>
         </div>
