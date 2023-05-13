@@ -3,8 +3,12 @@
 
 import Container from "@components/container.astro";
 import Layout from "../layouts/Layout.astro";
+import { getContact } from "@utils/sanity";
+import { Icon } from "astro-icon";
 
 const accessKey = import.meta.env.ACCESS_KEY;
+
+const contact = await getContact();
 ---
 
 <Layout title="Contact">
@@ -16,6 +20,7 @@ const accessKey = import.meta.env.ACCESS_KEY;
         and we'll get back to you soon. Your satisfaction is our priority.
       </p>
     </div>
+
     <form
       action="https://api.web3forms.com/submit"
       method="POST"
@@ -79,6 +84,34 @@ const accessKey = import.meta.env.ACCESS_KEY;
 
       <div id="result" class="mt-3 text-center"></div>
     </form>
+    <div
+      class="md:hidden bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12 mb-5"
+    >
+      <div class="block content-center flex-wrap space-y-3">
+        <div class="flex items-center space-x-2">
+          <Icon class="w-4 h-4" name="ic:baseline-add-ic-call" /><a
+            href={`tel:${contact.line1}`}
+            >Free Phone: {contact.line1}
+          </a>
+        </div>
+        <div class="flex items-center space-x-2">
+          <Icon class="w-4 h-4" name="ic:baseline-add-ic-call" /><a
+            href={`tel:${contact.line2}`}
+            >24 Hour Line 1: {contact.line2}
+          </a>
+        </div>
+        <div class="flex items-center space-x-2">
+          <Icon class="w-4 h-4" name="ic:baseline-add-ic-call" /><a
+            href={`tel:${contact.line3}`}
+            >24 Hour Line 2: {contact.line3}
+          </a>
+        </div>
+        <div class="flex items-center space-x-2">
+          <Icon class="w-4 h-4" name="ic:baseline-chat" />
+          <a href={`mailto:${contact.email}`}>{contact.email}</a>
+        </div>
+      </div>
+    </div>
   </Container>
 </Layout>
 
