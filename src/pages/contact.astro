@@ -3,6 +3,8 @@
 
 import Container from "@components/container.astro";
 import Layout from "../layouts/Layout.astro";
+
+const accessKey = import.meta.env.ACCESS_KEY;
 ---
 
 <Layout title="Contact">
@@ -14,11 +16,7 @@ import Layout from "../layouts/Layout.astro";
       class="needs-validation"
       novalidate
     >
-      <input
-        type="hidden"
-        name="access_key"
-        value="c001b106-29de-4761-9974-b6fede549852"
-      />
+      <input type="hidden" name="access_key" value={accessKey} />
       <!-- Create your free access key from https://web3forms.com/ -->
       <input
         type="checkbox"
