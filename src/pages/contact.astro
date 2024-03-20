@@ -22,7 +22,7 @@ const contact = await getContact();
     </div>
 
     <form
-      action="https://mailmylead.fly.dev"
+      action="https://mailmylead.fly.dev/submit"
       method="POST"
       id="form"
       class="needs-validation"
@@ -149,7 +149,7 @@ const contact = await getContact();
 
     result.innerHTML = "Sending...";
 
-    fetch("https://mailmylead.fly.dev", {
+    fetch("https://mailmylead.fly.dev/submit", {
       method: "POST",
       headers: {
         Accept: "application/json",
