@@ -22,7 +22,7 @@ const contact = await getContact();
     </div>
 
     <form
-      action="https://mailmylead.fly.dev/submit"
+      action="https://mailmylead.fly.dev"
       method="POST"
       id="form"
       class="needs-validation"
@@ -146,18 +146,15 @@ const contact = await getContact();
       return;
     }
     const formData = new FormData(form);
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
 
     result.innerHTML = "Sending...";
 
-    fetch("https://mailmylead.fly.dev/submit", {
+    fetch("https://mailmylead.fly.dev", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: json,
+      body: formData,
     })
       .then(async (response) => {
         let json = await response.json();
@@ -178,7 +175,7 @@ const contact = await getContact();
         form.reset();
         form.classList.remove("was-validated");
         setTimeout(() => {
-          result.style.display = "none";
+          result.innerHTML = "";
         }, 5000);
       });
   });
