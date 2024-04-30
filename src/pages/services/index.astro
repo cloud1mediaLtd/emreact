@@ -15,7 +15,7 @@ interface Props {
 
 <Layout title="Our services">
   <Container>
-    <ul class="grid grid-cols-1 md:grid-cols-3 gap-5">
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-5">
       {
         posts.map((service, index) => (
           <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
@@ -35,7 +35,7 @@ interface Props {
               />
 
               <div class="py-4 text-center">
-                <h2 class="text-xl text-gray-700 dark:text-gray-50 font-bold">
+                <h2 class="text-xl text-gray-700 dark:text-gray-50 font-semibold">
                   {service.title}
                 </h2>
               </div>
