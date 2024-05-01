@@ -32,6 +32,14 @@ export async function getPost(slug: string): Promise<Post> {
   );
 }
 
+export interface SanityFile {
+  _id: string;
+  asset: {
+    _ref: string;
+    _type: string;
+  };
+}
+
 export interface Post {
   _type: "post";
   _createdAt: string;
@@ -87,6 +95,8 @@ export interface Service {
 export interface Hero {
   _type: "hero";
   title?: string;
+  heroMobileVideo: SanityFile; // Updated to reflect file type
+  heroDesktopVideo: SanityFile; // Updated to reflect file type
   mainImage?: ImageAsset;
   paragraph?: string;
   linkA?: string;
