@@ -18,8 +18,8 @@ interface Props {
     <ul class="grid grid-cols-1 md:grid-cols-2 gap-5">
       {
         posts.map((service, index) => (
-          <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
-            <a href={`/services/${service.slug.current}`}>
+          <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+            <a href={`/services/${service.slug.current}`} class="block">
               {service.mainImage ? (
                 <Picture
                   src={urlFor(service.mainImage).url()}
@@ -35,8 +35,13 @@ interface Props {
                   class="w-full rounded-md"
                 />
               ) : (
-                <div class="w-full h-48 bg-gray-300 rounded-md flex items-center justify-center">
-                  <span class="text-lg text-gray-500">No image available</span>
+                <div
+                  class="relative w-full bg-gray-300 rounded-md overflow-hidden"
+                  style="padding-top: 56.25%;"
+                >
+                  <span class="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center text-lg text-gray-500">
+                    No image available
+                  </span>
                 </div>
               )}
 
