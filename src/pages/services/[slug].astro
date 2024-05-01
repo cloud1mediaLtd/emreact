@@ -15,7 +15,6 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params as Params;
-
 const post = await getService(slug?.toString()!);
 ---
 
@@ -24,39 +23,27 @@ const post = await getService(slug?.toString()!);
     <section class="items-center">
       {
         post.mainImage ? (
-          <>
-            <Picture
-              src={urlFor(post.mainImage).url()}
-              alt="Cover image"
-              sizes="(max-width: 800px) 100vw, 800px"
-              widths={[200, 400, 800]}
-              aspectRatio="16:9"
-              background="#ffffff"
-              fit="cover"
-              position="center"
-              class="rounded overflow-hidden h-auto z-0 mx-auto pt-12"
-            />
-          </>
+          <Picture
+            src={urlFor(post.mainImage).url()}
+            alt="Cover image"
+            sizes="(max-width: 800px) 100vw, 800px"
+            widths={[200, 400, 800]}
+            aspectRatio="16:9"
+            background="#ffffff"
+            fit="cover"
+            position="center"
+            class="rounded overflow-hidden h-auto z-0 mx-auto pt-12"
+          />
         ) : (
-          <div class="flex items-center col-span-1 h-full w-full bg-gray-500">
-            <div class="content-center">
-              <img
-                class=""
-                src="/fa2b3c00-2423-4c15-be39-4d4beda7092d.webp"
-                alt=""
-              />
-            </div>
+          <div class="flex items-center justify-center col-span-1 h-64 w-full bg-gray-300">
+            <span class="text-xl text-gray-700">No image available</span>
           </div>
         )
       }
 
       <div class="flex flex-col my-8 pb-8 border-b p-6">
-        <span
-          class="uppercase tracking-wider text-sm font-medium text-gray-500 dark:text-gray-400"
-        >
-        </span>
         <h1
-          class="text-4xl lg:text-5xl prose text-center font-bold lg:tracking-tight mt-1 lg:leading-tight text-medbg"
+          class="text-4xl lg:text-5xl text-center font-bold lg:tracking-tight mt-1 lg:leading-tight text-gray-900"
         >
           {post.title}
         </h1>

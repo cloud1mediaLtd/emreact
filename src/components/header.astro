@@ -14,7 +14,7 @@ const contact = await getContact();
   >
     <div></div>
     <div class="flex items-center">
-      <ul class="flex">
+      <ul class="flex gap-5">
         <li>
           <a
             href={`tel:${contact.line1}`}
@@ -22,25 +22,37 @@ const contact = await getContact();
             >Landline: {contact.line1}</a
           >
         </li>
+        <span
+          class="hidden md:block text-md font-semibold text-gray-500 dark:text-white"
+          >|</span
+        >
         <li>
           <a
             href={`tel:${contact.line2}`}
-            class="hidden md:block text-md font-semibold text-gray-500 dark:text-white hover:underline pl-5"
-            >24hr line 1: {contact.line2}</a
+            class="hidden md:block text-md font-semibold text-gray-500 dark:text-white hover:underline"
+            >{contact.line2}</a
           >
         </li>
+        <span
+          class="hidden md:block text-md font-semibold text-gray-500 dark:text-white"
+          >|</span
+        >
         <li>
           <a
             href={`tel:${contact.line3}`}
-            class="hidden md:block text-md font-semibold text-gray-500 dark:text-white hover:underline pl-5"
-            >24hr line 2: {contact.line3}</a
+            class="hidden md:block text-md font-semibold text-gray-500 dark:text-white hover:underline"
+            >{contact.line3}</a
           >
         </li>
+        <span
+          class="hidden md:block text-md font-semibold text-gray-500 dark:text-white"
+          >|</span
+        >
         <li>
           <a
             href={`tel:${contact.line4}`}
-            class="hidden md:block text-md font-semibold text-gray-500 dark:text-white hover:underline pl-5"
-            >24hr line 3: {contact.line4}</a
+            class="hidden md:block text-md font-semibold text-gray-500 dark:text-white hover:underline"
+            >{contact.line4}</a
           >
         </li>
       </ul>
@@ -159,6 +171,12 @@ const contact = await getContact();
             </li>
           ))
         }
+        <a
+          href={`/services`}
+          class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 bg-gradient-to-r from-red-600 via-red-700 to-red-800 hover:bg-red-800 hover:bg-gradient-to-br"
+        >
+          <div class="font-semibold">All services</div>
+        </a>
       </ul>
     </div>
   </div>

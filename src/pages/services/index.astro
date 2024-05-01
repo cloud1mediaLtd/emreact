@@ -20,19 +20,25 @@ interface Props {
         posts.map((service, index) => (
           <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
             <a href={`/services/${service.slug.current}`}>
-              <Picture
-                src={urlFor(service.mainImage).url()}
-                alt={service.alt}
-                sizes="(max-width: 800px) 100vw, 800px"
-                widths={[200, 400, 800]}
-                aspectRatio="16:9"
-                background="#ffffff"
-                fit="cover"
-                position="center"
-                loading={index <= 2 ? "eager" : "lazy"}
-                decoding={index <= 2 ? "sync" : "async"}
-                class="w-full rounded-md"
-              />
+              {service.mainImage ? (
+                <Picture
+                  src={urlFor(service.mainImage).url()}
+                  alt={service.alt || "Default image description"}
+                  sizes="(max-width: 800px) 100vw, 800px"
+                  widths={[200, 400, 800]}
+                  aspectRatio="16:9"
+                  background="#ffffff"
+                  fit="cover"
+                  position="center"
+                  loading={index <= 2 ? "eager" : "lazy"}
+                  decoding={index <= 2 ? "sync" : "async"}
+                  class="w-full rounded-md"
+                />
+              ) : (
+                <div class="w-full h-48 bg-gray-300 rounded-md flex items-center justify-center">
+                  <span class="text-lg text-gray-500">No image available</span>
+                </div>
+              )}
 
               <div class="py-4 text-center">
                 <h2 class="text-xl text-gray-700 dark:text-gray-50 font-semibold">
