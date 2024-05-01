@@ -2,6 +2,7 @@
 import { SEO } from "astro-seo";
 import Header from "../components/header.astro";
 import Footer from "../components/footer.astro";
+import MobileFooter from "../components/mobile-footer.astro";
 
 const { title } = Astro.props;
 const makeTitle = title
@@ -43,12 +44,16 @@ const makeTitle = title
     />
 
     <script>
-        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark')
-        }
+      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+      if (
+        localStorage.getItem("color-theme") === "dark" ||
+        (!("color-theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
     </script>
 
     <meta charset="UTF-8" />
@@ -56,10 +61,17 @@ const makeTitle = title
 
     <meta name="generator" content={Astro.generator} />
   </head>
-  <body class="dark:bg-slate-950 bg-gray-50">
+  <body class="dark:bg-slate-950 bg-gray-50 flex flex-col min-h-screen">
     <Header />
-    <slot />
+    <div class="flex-grow">
+      <slot />
+    </div>
     <Footer />
+
+    <div class="sticky bottom-0 z-50 w-full">
+      <MobileFooter />
+    </div>
+
     <style is:global>
       /* Improve Page speed */
       /* https://css-tricks.com/almanac/properties/c/content-visibility/ */

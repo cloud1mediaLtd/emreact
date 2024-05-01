@@ -106,6 +106,12 @@ const contact = await getContact();
           </a>
         </div>
         <div class="flex items-center space-x-2">
+          <Icon class="w-4 h-4" name="ic:baseline-add-ic-call" /><a
+            href={`tel:${contact.line4}`}
+            >24 Hour Line 2: {contact.line4}
+          </a>
+        </div>
+        <div class="flex items-center space-x-2">
           <Icon class="w-4 h-4" name="ic:baseline-chat" />
           <a href={`mailto:${contact.email}`}>{contact.email}</a>
         </div>

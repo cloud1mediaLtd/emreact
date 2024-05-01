@@ -1,0 +1,25 @@
+---
+import { Icon } from "astro-icon";
+---
+
+<footer class="flex sm:hidden shadow-lg h-18 border-t" dir="ltr">
+  <div class="flex justify-between items-center w-full bg-black">
+    <div class="px-5 w-full">
+      <span class="flex justify-center w-full">
+        <a
+          href="/contact"
+          class="w-full inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-gradient-to-r from-red-600 via-red-700 to-red-800 hover:bg-red-800 hover:bg-gradient-to-br focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80"
+        >
+          Contact
+        </a>
+      </span>
+    </div>
+    <div
+      class="flex gap-3 items-center justify-center bg-gradient-to-r from-green-600 via-green-700 to-green-800 hover:bg-green-800 hover:bg-gradient-to-br p-4 text-white h-18 w-18"
+    >
+      <a href={"tel:+443334559090"}>
+        <Icon name="mdi:phone" class="w-6 h-6" />
+      </a>
+    </div>
+  </div>
+</footer>

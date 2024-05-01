@@ -36,6 +36,13 @@ const contact = await getContact();
             >24hr line 2: {contact.line3}</a
           >
         </li>
+        <li>
+          <a
+            href={`tel:${contact.line4}`}
+            class="hidden md:block text-md font-semibold text-gray-500 dark:text-white hover:underline pl-5"
+            >24hr line 3: {contact.line4}</a
+          >
+        </li>
       </ul>
     </div>
   </div>
