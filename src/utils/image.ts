@@ -14,8 +14,15 @@ export function videoUrl(assetRef?: string): string {
     return ""; // Return a default fallback URL or an empty string
   }
 
-  const assetId = assetRef.replace("file-", "").replace("-mp4", "");
+  // Extract the asset ID and file extension from the asset reference
+  const match = assetRef.match(/file-(.*?)-(mp4|mov)$/);
+  if (!match) {
+    console.error("Invalid assetRef format:", assetRef);
+    return ""; // Return a default fallback URL or an empty string if the format does not match
+  }
+
+  const [_, assetId, extension] = match;
   return `https://cdn.sanity.io/files/${
     import.meta.env.PUBLIC_SANITY_PROJECT_ID
-  }/${import.meta.env.PUBLIC_SANITY_DATASET}/${assetId}.mp4`;
+  }/${import.meta.env.PUBLIC_SANITY_DATASET}/${assetId}.${extension}`;
 }
