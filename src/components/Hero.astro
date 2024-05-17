@@ -1,15 +1,14 @@
 ---
-import { Image, Picture } from "@astrojs/image/components";
 import { urlFor, videoUrl } from "../utils/image";
 import { getHero } from "@utils/sanity";
+import { Image } from "astro:assets";
 
 const hero = await getHero();
-console.log(hero);
 ---
 
 <section class="">
   <div
-    class="mx-auto max-w-screen-xl relative bg-gray-800 xl:mt-8 rounded-lg overflow-hidden"
+    class="relative bg-gray-800 xl:mt-8 rounded-lg overflow-hidden container"
   >
     <!-- Desktop Video -->
     <video
@@ -35,12 +34,14 @@ console.log(hero);
       playsinline
       preload="none"></video>
     <!-- Image fallback or additional content -->
-    <Picture
+    <Image
       src={hero.mainImage ? urlFor(hero.mainImage).url() : ""}
       alt={hero.title || ""}
       class="absolute inset-0 object-cover w-full h-full bg-center bg-no-repeat bg-cover bg-gray-900 opacity-60 rounded-lg border-gray-200 dark:border-gray-700"
-      widths={[400, 800, 1200]}
-      aspectRatio="3:2"
+      width={1000}
+      height={600}
+      width={1000}
+      height={600}
     />
 
     <div

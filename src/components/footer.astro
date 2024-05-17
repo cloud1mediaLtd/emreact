@@ -9,100 +9,79 @@ import { Icon } from "astro-icon";
 const contact = await getContact();
 ---
 
-<footer class="bg-gray-100 dark:bg-red-700">
-  <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-    <div class="md:flex md:justify-between">
-      <div class="mb-6 md:mb-0">
-        <a href="/" class="hidden items-center">
-          <img src="/emreactlogo.png" class="h-12 mr-3" alt="FlowBite Logo" />
-          <span
-            class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
-            >EM React</span
-          >
-        </a>
-
-        <div
-          class="hidden text-gray-400 dark:text-white md:flex content-center flex-wrap space-x-5"
+<footer class="bg-gray-100 dark:bg-red-700 pt-6">
+  <div class="container flex gap-5 h-full justify-between w-full">
+    <div class="">
+      <a href="/" class="hidden items-center">
+        <img src="/emreactlogo.png" class="h-12 mr-3" alt="FlowBite Logo" />
+        <span
+          class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+          >EM React</span
         >
-          <div class="block content-center flex-wrap space-y-3">
-            <div class="flex items-center space-x-2">
-              <Icon class="w-4 h-4" name="ic:baseline-add-ic-call" /><a
-                href={`tel:${contact.line1}`}
-                >Free Phone: {contact.line1}
-              </a>
-            </div>
-            <div class="flex items-center space-x-2">
-              <Icon class="w-4 h-4" name="ic:baseline-add-ic-call" /><a
-                href={`tel:${contact.line2}`}
-                >24 Hour Line 1: {contact.line2}
-              </a>
-            </div>
-            <div class="flex items-center space-x-2">
-              <Icon class="w-4 h-4" name="ic:baseline-add-ic-call" /><a
-                href={`tel:${contact.line3}`}
-                >24 Hour Line 2: {contact.line3}
-              </a>
-            </div>
-            <div class="flex items-center space-x-2">
-              <Icon class="w-4 h-4" name="ic:baseline-add-ic-call" /><a
-                href={`tel:${contact.line4}`}
-                >24 Hour Line 3: {contact.line4}
-              </a>
-            </div>
-            <div class="flex items-center space-x-2">
-              <Icon class="w-4 h-4" name="ic:baseline-chat" />
-              <a href={`mailto:${contact.email}`}>{contact.email}</a>
-            </div>
+      </a>
+
+      <div
+        class="text-gray-400 dark:text-white flex content-center flex-wrap space-x-5"
+      >
+        <div class="block content-center flex-wrap space-y-3">
+          <div class="flex items-center space-x-2">
+            <Icon class="w-4 h-4" name="ic:baseline-add-ic-call" /><a
+              href={`tel:${contact.line1}`}
+              >Free Phone: {contact.line1}
+            </a>
+          </div>
+          <div class="flex items-center space-x-2">
+            <Icon class="w-4 h-4" name="ic:baseline-add-ic-call" /><a
+              href={`tel:${contact.line2}`}
+              >24 Hour Line 1: {contact.line2}
+            </a>
+          </div>
+          <div class="flex items-center space-x-2">
+            <Icon class="w-4 h-4" name="ic:baseline-add-ic-call" /><a
+              href={`tel:${contact.line3}`}
+              >24 Hour Line 2: {contact.line3}
+            </a>
+          </div>
+          <div class="flex items-center space-x-2">
+            <Icon class="w-4 h-4" name="ic:baseline-add-ic-call" /><a
+              href={`tel:${contact.line4}`}
+              >24 Hour Line 3: {contact.line4}
+            </a>
+          </div>
+          <div class="flex items-center space-x-2">
+            <Icon class="w-4 h-4" name="ic:baseline-chat" />
+            <a href={`mailto:${contact.email}`}>{contact.email}</a>
           </div>
         </div>
       </div>
-      <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-2">
-        <div>
-          <h2
-            class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white"
-          >
-            Resources
-          </h2>
-          <ul class="text-gray-600 dark:text-white font-medium">
-            <li class="mb-4">
-              <a href="/about" class="hover:underline">About</a>
-            </li>
-            <li class="mb-4">
-              <a href="/services" class="hover:underline">Services</a>
-            </li>
-            <li>
-              <a href="/EMReact.pdf" download>Download Brochure</a>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h2
-            class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white"
-          >
-            Legal
-          </h2>
-          <ul class="text-gray-600 dark:text-white font-medium">
-            <li class="mb-4">
-              <a href="#" class="hover:underline">Privacy Policy</a>
-            </li>
-
-            <li>
-              <a href="#" class="hover:underline">Terms &amp; Conditions</a>
-            </li>
-          </ul>
-        </div>
-      </div>
     </div>
-    <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-    <div class="sm:flex sm:items-center sm:justify-between gap-2">
-      <span class="text-sm text-gray-500 sm:text-center dark:text-white"
-        >© 2024 <a href="https://flowbite.com/" class="hover:underline"
-          >EM React {" "}™</a
-        > - All Rights Reserved.
-      </span>
-      <Nightmode />
-      <Social />
+    <div class="">
+      <h2
+        class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white"
+      >
+        Resources
+      </h2>
+      <ul class="text-gray-600 dark:text-white font-medium">
+        <li class="mb-4">
+          <a href="/about" class="hover:underline">About</a>
+        </li>
+        <li class="mb-4">
+          <a href="/services" class="hover:underline">Services</a>
+        </li>
+        <li>
+          <a href="/EMReact.pdf" download>Download Brochure</a>
+        </li>
+      </ul>
     </div>
+  </div>
+  <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+  <div class="sm:flex sm:items-center sm:justify-between gap-2 container pb-8">
+    <span class="text-sm text-gray-500 sm:text-center dark:text-white"
+      >© 2024 <a href="https://flowbite.com/" class="hover:underline"
+        >EM React {" "}™</a
+      > - All Rights Reserved.
+    </span>
+    <Nightmode />
+    <Social />
   </div>
 </footer>

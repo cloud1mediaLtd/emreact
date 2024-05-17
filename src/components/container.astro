@@ -3,10 +3,7 @@ const { class: className } = Astro.props;
 ---
 
 <div
-  class:list={[
-    "max-w-screen-xl mx-auto px-5 2xl:px-0 text-black dark:text-white my-10 md:py-8",
-    className,
-  ]}
+  class:list={["container text-black dark:text-white my-10 md:py-8", className]}
 >
   <slot />
 </div>

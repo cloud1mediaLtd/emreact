@@ -1,7 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
-import { Picture } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 import { getAbout } from "@utils/sanity";
 import { urlFor } from "../utils/image";
 
@@ -11,17 +11,21 @@ const about = await getAbout();
 <Layout title="About">
   <Container>
     <div class="mb-8">
-      <Picture
-        src={urlFor(about.mainImage).url()}
-        alt={about.alt}
-        sizes="(max-width: 1800px) 100vw, 1800px"
-        widths={[200, 400, 800, 1200, 1800]}
-        aspectRatio="16:9"
-        background="#ffffff"
-        fit="cover"
-        position="center"
-        class="object-cover w-full h-48 md:h-96 rounded-lg shadow-lg overflow-hidden"
-      />
+      {
+        about.mainImage ? (
+          <Image
+            src={urlFor(about.mainImage).url()}
+            alt={about.alt || "About Us Image"}
+            width="800"
+            height="400"
+            class="object-cover w-full h-48 md:h-96 rounded-lg shadow-lg overflow-hidden"
+          />
+        ) : (
+          <div class="object-cover w-full h-48 md:h-96 rounded-lg shadow-lg overflow-hidden bg-gray-300">
+            <span class="text-lg text-gray-500">No image available</span>
+          </div>
+        )
+      }
     </div>
     <h1
       class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl"

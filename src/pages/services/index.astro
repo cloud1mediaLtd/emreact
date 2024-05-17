@@ -1,5 +1,5 @@
 ---
-import { Picture } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
 import { urlFor } from "../../utils/image";
@@ -13,7 +13,7 @@ interface Props {
 }
 ---
 
-<Layout title="Our services">
+<Layout title="Em React Services">
   <Container>
     <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       {
@@ -21,18 +21,12 @@ interface Props {
           <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
             <a href={`/services/${service.slug.current}`} class="block">
               {service.mainImage ? (
-                <Picture
+                <Image
                   src={urlFor(service.mainImage).url()}
                   alt={service.alt || "Default image description"}
                   sizes="(max-width: 800px) 100vw, 800px"
-                  widths={[200, 400, 800]}
-                  aspectRatio="16:9"
-                  background="#ffffff"
-                  fit="cover"
-                  position="center"
-                  loading={index <= 2 ? "eager" : "lazy"}
-                  decoding={index <= 2 ? "sync" : "async"}
-                  class="w-full rounded-md"
+                  width={800}
+                  height={450}
                 />
               ) : (
                 <div

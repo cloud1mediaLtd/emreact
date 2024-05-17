@@ -104,6 +104,7 @@ export interface Hero {
 }
 
 export interface About {
+  [x: string]: any;
   _type: "about";
   titlePart1?: string;
   titlePart2?: string;

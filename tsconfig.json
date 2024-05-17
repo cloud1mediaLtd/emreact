@@ -1,6 +1,13 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "esnext",
+    "plugins": [
+      {
+        "name": "@astrojs/ts-plugin"
+      }
+    ],
     "strictNullChecks": true,
     "baseUrl": "src",
     "paths": {
@@ -9,7 +16,7 @@
       "@components/*": ["components/*"],
       "@layouts/*": ["layouts/*"],
       "@assets/*": ["assets/*"],
-      "@pages/*": ["pages/*"],
-    },
+      "@pages/*": ["pages/*"]
+    }
   }
 }
