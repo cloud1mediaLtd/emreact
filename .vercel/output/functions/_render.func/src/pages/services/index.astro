@@ -1,0 +1,53 @@
+---
+import { Image } from "astro:assets";
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import { urlFor } from "../../utils/image";
+
+import { Post, getServices } from "@utils/sanity";
+
+const posts = await getServices();
+
+interface Props {
+  post: Post;
+}
+---
+
+<Layout title="Em React Services">
+  <Container>
+    <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      {
+        posts.map((service, index) => (
+          <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+            <a href={`/services/${service.slug.current}`} class="block">
+              {service.mainImage ? (
+                <Image
+                  src={urlFor(service.mainImage).url()}
+                  alt={service.alt || "Default image description"}
+                  sizes="(max-width: 800px) 100vw, 800px"
+                  width={800}
+                  height={450}
+                />
+              ) : (
+                <div
+                  class="relative w-full bg-gray-300 rounded-md overflow-hidden"
+                  style="padding-top: 56.25%;"
+                >
+                  <span class="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center text-lg text-gray-500">
+                    No image available
+                  </span>
+                </div>
+              )}
+
+              <div class="py-4 text-center">
+                <h2 class="text-xl text-gray-700 dark:text-gray-50 font-semibold">
+                  {service.title}
+                </h2>
+              </div>
+            </a>
+          </div>
+        ))
+      }
+    </ul>
+  </Container>
+</Layout>

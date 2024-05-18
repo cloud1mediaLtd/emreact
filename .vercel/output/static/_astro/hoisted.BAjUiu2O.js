@@ -1,0 +1,1 @@
+import"./hoisted.Dk3-u3aM.js";window.addEventListener("load",()=>{setTimeout(()=>{document.querySelectorAll(".hero-video").forEach(e=>{e.src=e.getAttribute("data-src"),e.load(),e.addEventListener("loadeddata",()=>{e.play()})})},1e3)});

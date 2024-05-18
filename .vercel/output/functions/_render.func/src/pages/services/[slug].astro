@@ -1,0 +1,55 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/container.astro";
+import { Image } from "astro:assets";
+import { getService, getServices } from "@utils/sanity";
+import { urlFor } from "../../utils/image";
+import { PortableText } from "astro-portabletext";
+import type { Params } from "astro";
+
+export async function getStaticPaths() {
+  const posts = await getServices();
+  return posts.map((post) => ({
+    params: { slug: post.slug.current },
+  }));
+}
+
+const { slug } = Astro.params as Params;
+const post = await getService(slug?.toString()!);
+---
+
+<Layout title={post.title!}>
+  <Container>
+    <section class="">
+      {
+        post.mainImage ? (
+          <Image
+            src={urlFor(post.mainImage).url()}
+            alt="Cover image"
+            class="rounded overflow-hidden z-0 mx-auto pt-12 h-[500px] object-cover"
+            width={1500}
+            height={500}
+          />
+        ) : (
+          <div class="flex items-center justify-center grow min-h-[400px] w-full bg-gray-300">
+            <span class="text-xl text-gray-700">No image available</span>
+          </div>
+        )
+      }
+
+      <div class="flex flex-col my-8 pb-8 border-b p-6">
+        <h1
+          class="text-4xl lg:text-5xl prose text-center font-bold lg:tracking-tight mt-1 lg:leading-tight text-medbg"
+        >
+          {post.title}
+        </h1>
+      </div>
+
+      <div
+        class="mx-auto prose prose-2xl dark:prose-invert mt-6 text-gray-500 dark:text-gray-400 pb-12"
+      >
+        <PortableText value={post.body} />
+      </div>
+    </section>
+  </Container>
+</Layout>

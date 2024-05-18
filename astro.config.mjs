@@ -1,9 +1,8 @@
 import { defineConfig } from "astro/config";
-import vercel from "@astrojs/vercel"; // updated import for vercel adapter
+import vercel from "@astrojs/vercel/serverless";
 import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
-import sanity from "@sanity/client"; // update: use Sanity client directly
-
+import sanity from "@sanity/client";
 // Initialize Sanity client
 const sanityClient = sanity({
   projectId: "fxgbvp8h",
@@ -19,7 +18,6 @@ export default defineConfig({
     mdx(),
     // If there's a specific Astro integration for Sanity in the future, add it here
   ],
-  adapter: vercel({
-    analytics: true,
-  }),
+  output: "server",
+  adapter: vercel(),
 });
