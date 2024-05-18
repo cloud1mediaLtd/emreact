@@ -2,23 +2,37 @@
 import { urlFor } from "../utils/image";
 import type { Gallery } from "../utils/sanity";
 
-interface GalleryProps extends Gallery {}
+interface GalleryProps extends Gallery {
+  show?: "stacked" | "inline" | "carousel"; // Define the show prop with specific string values
+}
 
-const { images, zoom } = Astro.props as GalleryProps;
-console.log("Gallery component props:", images, zoom);
+const { images, zoom, show } = Astro.props as GalleryProps;
+console.log("Gallery component props:", images, zoom, show);
+
+const galleryStyles: Record<string, string> = {
+  stacked: "flex flex-col gap-4",
+  inline: "flex flex-wrap gap-4",
+  carousel: "carousel-container", // You can add your own carousel styles or use a library
+};
+
+const galleryStyle = galleryStyles[show || "inline"];
 ---
 
-<section class="gallery">
+<section class={`gallery ${galleryStyle}`}>
   {
-    images.map((image) => (
-      <div class="gallery-item">
-        <img
-          src={urlFor(image.asset).url() || "/247.png"}
-          alt={image.alt || "Gallery image"}
-          class={zoom ? "zoom-enabled  max-h-96 object-cover" : ""}
-        />
-      </div>
-    ))
+    images.map((image, index) => {
+      const imageUrl = urlFor(image.asset)?.url() || "/247.png";
+      return (
+        <div class="gallery-item">
+          <img
+            src={imageUrl}
+            alt={image.alt || "Gallery image"}
+            data-index={index}
+            class={zoom ? "zoom-enabled max-h-96 object-cover" : ""}
+          />
+        </div>
+      );
+    })
   }
 </section>
 
@@ -33,14 +47,31 @@ console.log("Gallery component props:", images, zoom);
 
 <style>
   .gallery {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .gallery.stacked {
+    flex-direction: column;
+  }
+
+  .gallery.inline {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: masonry;
     gap: 1rem;
   }
 
   .gallery img {
     width: 100%;
+    height: auto;
   }
+
+  .gallery-item {
+    overflow: hidden;
+    position: relative;
+  }
+
   .gallery-item img.zoom-enabled {
     cursor: zoom-in;
   }
@@ -56,6 +87,7 @@ console.log("Gallery component props:", images, zoom);
     width: 100%;
     height: 100%;
     overflow: auto;
+    background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.9);
   }
 
@@ -78,49 +110,40 @@ console.log("Gallery component props:", images, zoom);
     padding: 10px 0;
   }
 
-  .close {
+  .close,
+  .prev,
+  .next {
     position: absolute;
-    top: 15px;
-    right: 35px;
+    top: 50%;
     color: #f1f1f1;
     font-size: 40px;
     font-weight: bold;
     transition: 0.3s;
+    user-select: none;
+  }
+
+  .close {
+    top: 15px;
+    right: 35px;
   }
 
   .close:hover,
-  .close:focus {
+  .close:focus,
+  .prev:hover,
+  .prev:focus,
+  .next:hover,
+  .next:focus {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;
   }
 
-  .prev,
-  .next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    width: auto;
-    padding: 16px;
-    margin-top: -22px;
-    color: white;
-    font-weight: bold;
-    font-size: 30px;
-    transition: 0.6s ease;
-    user-select: none;
-  }
-
   .prev {
-    left: 0;
+    left: 15px;
   }
 
   .next {
-    right: 0;
-  }
-
-  .prev:hover,
-  .next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+    right: 15px;
   }
 </style>
 

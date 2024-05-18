@@ -79,23 +79,43 @@ export async function getContact(): Promise<Contact> {
   return await client.fetch(groq`*[_type == "contact"][0]`);
 }
 
-export async function getGallery(): Promise<Gallery> {
-  return await client.fetch(
-    groq`*[_type == "gallery"][0]{
-      _type,
-      _createdAt,
-      name,
-      images[]{
-        _key,
-        asset->{
-          _id,
-          url
+export async function getGallery(name?: string): Promise<Gallery> {
+  if (name) {
+    return await client.fetch(
+      groq`*[_type == "gallery" && name == $name][0]{
+        _type,
+        _createdAt,
+        name,
+        images[]{
+          _key,
+          asset->{
+            _id,
+            url
+          },
+          alt
         },
-        alt
-      },
-      zoom
-    }`
-  );
+        zoom
+      }`,
+      { name }
+    );
+  } else {
+    return await client.fetch(
+      groq`*[_type == "gallery"][0]{
+        _type,
+        _createdAt,
+        name,
+        images[]{
+          _key,
+          asset->{
+            _id,
+            url
+          },
+          alt
+        },
+        zoom
+      }`
+    );
+  }
 }
 
 export interface Service {
