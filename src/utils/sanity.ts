@@ -119,16 +119,26 @@ export async function getGallery(name?: string): Promise<Gallery> {
 }
 
 export interface Service {
-  _type: "service";
+  _type: "services";
   _createdAt: string;
   title?: string;
   slug: Slug;
   excerpt?: string;
   mainImage?: ImageAsset;
   body: PortableTextBlock[];
-  categories: Array<string>;
-  readTime: string;
   alt: string;
+  order: number;
+  servicesgallery: {
+    images: {
+      _key: string;
+      asset: {
+        _id: string;
+        url: string;
+      };
+      alt?: string;
+    }[];
+    zoom: boolean;
+  };
 }
 
 export interface Hero {

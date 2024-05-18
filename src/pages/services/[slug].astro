@@ -4,10 +4,9 @@ export const prerender = true;
 import Layout from "../../layouts/Layout.astro";
 import Container from "../../components/container.astro";
 import { Image } from "astro:assets";
-import { getGallery, getService, getServices } from "@utils/sanity";
+import { getService, getServices } from "@utils/sanity";
 import { urlFor } from "../../utils/image";
 import { PortableText } from "astro-portabletext";
-import GalleryComp from "../../components/gallerycomp.astro";
 import type { Params } from "astro";
 
 export async function getStaticPaths() {
@@ -19,7 +18,7 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params as Params;
 const post = await getService(slug?.toString()!);
-const gallery = await getGallery("main");
+console.log(post.servicesgallery);
 ---
 
 <Layout title={post.title!}>
@@ -55,8 +54,18 @@ const gallery = await getGallery("main");
         <PortableText value={post.body} />
       </div>
     </section>
-    <div class="overflow-x-auto">
-      <GalleryComp {...gallery} show={""} />
+    <div class="overflow-x-auto flex gap-5">
+      {
+        post.servicesgallery?.images.map((image) => (
+          <Image
+            src={urlFor(image).url()}
+            alt="Cover image"
+            class="rounded overflow-hidden z-0 mx-auto pt-12 h-[500px] object-cover min-w-[500px]"
+            width={1500}
+            height={500}
+          />
+        ))
+      }
     </div>
   </Container>
 </Layout>
