@@ -5,47 +5,130 @@ import type { Gallery } from "../utils/sanity";
 interface GalleryProps extends Gallery {}
 
 const { images, zoom } = Astro.props as GalleryProps;
-
-const galleryStyles = {
-  stacked: "flex flex-col gap-4",
-  inline: "flex flex-wrap gap-4",
-  carousel: "carousel-container", // You'll need to add your own carousel styles or use a library
-};
+console.log("Gallery component props:", images, zoom);
 ---
 
-<section class={`gallery ${galleryStyles.stacked}`}>
+<section class="gallery">
   {
     images.map((image) => (
-      <div class="gallery-item" class="gallery-item">
+      <div class="gallery-item">
         <img
-          src={urlFor(image.asset).url()}
+          src={urlFor(image.asset).url() || "/247.png"}
           alt={image.alt || "Gallery image"}
-          class={zoom ? "zoom-enabled" : ""}
+          class={zoom ? "zoom-enabled  max-h-96 object-cover" : ""}
         />
       </div>
     ))
   }
 </section>
 
+<!-- Modal for zoomed image -->
+<div id="zoomModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="zoomedImage" />
+  <div id="caption"></div>
+</div>
+
 <style>
-  .gallery.stacked img {
-    width: 100%;
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
   }
-  .gallery.inline img {
-    width: calc(33.333% - 1rem);
+
+  .gallery img {
+    width: 100%;
   }
   .gallery-item img.zoom-enabled {
     cursor: zoom-in;
   }
-  /* Add your carousel styles if using a carousel */
+
+  /* Modal styles */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+
+  .modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    max-height: 80%;
+    object-fit: contain;
+  }
+
+  #caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+  }
+
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+  }
 </style>
 
-<script>
-  if ({ zoom }) {
-    document.querySelectorAll(".zoom-enabled").forEach((img) => {
-      img.addEventListener("click", () => {
-        // Implement your zoom functionality here
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const zoomEnabled = true;
+    console.log("Zoom enabled: ", zoomEnabled);
+    if (zoomEnabled) {
+      const zoomEnabledImages = document.querySelectorAll(".zoom-enabled");
+      console.log("Zoom-enabled images:", zoomEnabledImages);
+
+      zoomEnabledImages.forEach((img) => {
+        img.addEventListener("click", () => {
+          console.log("Image clicked:", img.src); // Log when an image is clicked
+          const modal = document.getElementById("zoomModal");
+          const modalImg = document.getElementById("zoomedImage");
+          const captionText = document.getElementById("caption");
+
+          modal.style.display = "block";
+          modalImg.src = img.src;
+          captionText.innerHTML = img.alt;
+
+          const span = document.getElementsByClassName("close")[0];
+          span.onclick = function () {
+            modal.style.display = "none";
+          };
+
+          // Close modal when clicking outside the image
+          modal.onclick = function (event) {
+            if (event.target === modal) {
+              modal.style.display = "none";
+            }
+          };
+        });
       });
-    });
-  }
+    }
+  });
+
+  console.log("Gallery component loaded");
 </script>
