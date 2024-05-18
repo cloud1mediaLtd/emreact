@@ -1,7 +1,4 @@
 ---
-import Nightmode from "./nightmode.astro";
-import Social from "./ui/social.astro";
-
 import { getContact, getServices } from "@utils/sanity";
 
 const services = await getServices();
@@ -169,7 +166,7 @@ const contact = await getContact();
         }
         <a
           href={`/services`}
-          class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 bg-gradient-to-r from-red-600 via-red-700 to-red-800 hover:bg-red-800 hover:bg-gradient-to-br"
+          class="block p-3 rounded-lg dark:hover:bg-gray-700 bg-gradient-to-r from-red-600 via-red-700 to-red-800 hover:bg-red-800 hover:bg-gradient-to-br"
         >
           <div class="font-semibold">All services</div>
         </a>

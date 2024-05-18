@@ -1,0 +1,16 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/container.astro";
+import GalleryComp from "../components/gallerycomp.astro";
+import { getGallery } from "../utils/sanity";
+
+// Fetch the gallery data
+const gallery = await getGallery();
+---
+
+<Layout title="Gallery">
+  <Container>
+    <h1 class="text-4xl font-bold mb-8">Image Gallery</h1>
+    <GalleryComp {...gallery} />
+  </Container>
+</Layout>

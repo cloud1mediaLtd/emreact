@@ -79,6 +79,25 @@ export async function getContact(): Promise<Contact> {
   return await client.fetch(groq`*[_type == "contact"][0]`);
 }
 
+export async function getGallery(): Promise<Gallery> {
+  return await client.fetch(
+    groq`*[_type == "gallery"][0]{
+      _type,
+      _createdAt,
+      name,
+      images[]{
+        _key,
+        asset->{
+          _id,
+          url
+        },
+        alt
+      },
+      zoom
+    }`
+  );
+}
+
 export interface Service {
   _type: "service";
   _createdAt: string;
@@ -126,4 +145,19 @@ export interface Contact {
   line4?: string;
   email?: string;
   address?: string;
+}
+
+export interface Gallery {
+  _type: "gallery";
+  _createdAt: string;
+  name: string;
+  images: {
+    _key: string;
+    asset: {
+      _id: string;
+      url: string;
+    };
+    alt?: string;
+  }[];
+  zoom: boolean;
 }

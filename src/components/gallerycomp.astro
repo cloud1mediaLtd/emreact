@@ -1,0 +1,51 @@
+---
+import { urlFor } from "../utils/image";
+import type { Gallery } from "../utils/sanity";
+
+interface GalleryProps extends Gallery {}
+
+const { images, zoom } = Astro.props as GalleryProps;
+
+const galleryStyles = {
+  stacked: "flex flex-col gap-4",
+  inline: "flex flex-wrap gap-4",
+  carousel: "carousel-container", // You'll need to add your own carousel styles or use a library
+};
+---
+
+<section class={`gallery ${galleryStyles.stacked}`}>
+  {
+    images.map((image) => (
+      <div class="gallery-item" class="gallery-item">
+        <img
+          src={urlFor(image.asset).url()}
+          alt={image.alt || "Gallery image"}
+          class={zoom ? "zoom-enabled" : ""}
+        />
+      </div>
+    ))
+  }
+</section>
+
+<style>
+  .gallery.stacked img {
+    width: 100%;
+  }
+  .gallery.inline img {
+    width: calc(33.333% - 1rem);
+  }
+  .gallery-item img.zoom-enabled {
+    cursor: zoom-in;
+  }
+  /* Add your carousel styles if using a carousel */
+</style>
+
+<script>
+  if ({ zoom }) {
+    document.querySelectorAll(".zoom-enabled").forEach((img) => {
+      img.addEventListener("click", () => {
+        // Implement your zoom functionality here
+      });
+    });
+  }
+</script>
