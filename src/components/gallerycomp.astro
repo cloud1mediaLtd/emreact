@@ -8,33 +8,25 @@ interface GalleryProps extends Gallery {
 
 const { images, zoom, show } = Astro.props as GalleryProps;
 console.log("Gallery component props:", images, zoom, show);
-
-const galleryStyles: Record<string, string> = {
-  stacked: "flex flex-col gap-4",
-  inline: "flex flex-wrap gap-4",
-  carousel: "carousel-container", // You can add your own carousel styles or use a library
-};
-
-const galleryStyle = galleryStyles[show || "inline"];
 ---
 
-<section class={`gallery ${galleryStyle}`}>
+<div class="masonry">
   {
     images.map((image, index) => {
       const imageUrl = urlFor(image.asset)?.url() || "/247.png";
       return (
-        <div class="gallery-item">
+        <div class="masonry-item" key={image._key}>
           <img
+            class={`h-auto w-full rounded-lg ${zoom ? "zoom-enabled" : ""}`}
             src={imageUrl}
             alt={image.alt || "Gallery image"}
             data-index={index}
-            class={zoom ? "zoom-enabled max-h-96 object-cover" : ""}
           />
         </div>
       );
     })
   }
-</section>
+</div>
 
 <!-- Modal for zoomed image -->
 <div id="zoomModal" class="modal">
@@ -46,33 +38,24 @@ const galleryStyle = galleryStyles[show || "inline"];
 </div>
 
 <style>
-  .gallery {
-    display: flex;
-    gap: 1rem;
-  }
-
-  .gallery.stacked {
-    flex-direction: column;
-  }
-
-  .gallery.inline {
+  .masonry {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: masonry;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1rem;
   }
 
-  .gallery img {
+  .masonry-item {
+    display: flex;
+  }
+
+  .masonry-item img {
+    display: block;
     width: 100%;
     height: auto;
+    border-radius: 0.5rem;
   }
 
-  .gallery-item {
-    overflow: hidden;
-    position: relative;
-  }
-
-  .gallery-item img.zoom-enabled {
+  .zoom-enabled {
     cursor: zoom-in;
   }
 
@@ -149,59 +132,55 @@ const galleryStyle = galleryStyles[show || "inline"];
 
 <script is:inline>
   document.addEventListener("DOMContentLoaded", () => {
-    const zoomEnabled = true;
-    console.log("Zoom enabled: ", zoomEnabled);
-    if (zoomEnabled) {
-      const zoomEnabledImages = document.querySelectorAll(".zoom-enabled");
-      const modal = document.getElementById("zoomModal");
-      const modalImg = document.getElementById("zoomedImage");
-      const captionText = document.getElementById("caption");
-      let currentIndex = 0;
+    const zoomEnabledImages = document.querySelectorAll(".zoom-enabled");
+    const modal = document.getElementById("zoomModal");
+    const modalImg = document.getElementById("zoomedImage");
+    const captionText = document.getElementById("caption");
+    let currentIndex = 0;
 
-      console.log("Zoom-enabled images:", zoomEnabledImages);
+    console.log("Zoom-enabled images:", zoomEnabledImages);
 
-      zoomEnabledImages.forEach((img, index) => {
-        img.addEventListener("click", () => {
-          console.log("Image clicked:", img.src); // Log when an image is clicked
-          currentIndex = index;
-          openModal(img);
-        });
+    zoomEnabledImages.forEach((img, index) => {
+      img.addEventListener("click", () => {
+        console.log("Image clicked:", img.src); // Log when an image is clicked
+        currentIndex = index;
+        openModal(img);
       });
+    });
 
-      const openModal = (img) => {
-        modal.style.display = "block";
-        modalImg.src = img.src;
-        captionText.innerHTML = img.alt;
-      };
+    const openModal = (img) => {
+      modal.style.display = "block";
+      modalImg.src = img.src;
+      captionText.innerHTML = img.alt;
+    };
 
-      const closeModal = () => {
-        modal.style.display = "none";
-      };
+    const closeModal = () => {
+      modal.style.display = "none";
+    };
 
-      const showPrevImage = () => {
-        currentIndex =
-          currentIndex > 0 ? currentIndex - 1 : zoomEnabledImages.length - 1;
-        const prevImg = zoomEnabledImages[currentIndex];
-        openModal(prevImg);
-      };
+    const showPrevImage = () => {
+      currentIndex =
+        currentIndex > 0 ? currentIndex - 1 : zoomEnabledImages.length - 1;
+      const prevImg = zoomEnabledImages[currentIndex];
+      openModal(prevImg);
+    };
 
-      const showNextImage = () => {
-        currentIndex =
-          currentIndex < zoomEnabledImages.length - 1 ? currentIndex + 1 : 0;
-        const nextImg = zoomEnabledImages[currentIndex];
-        openModal(nextImg);
-      };
+    const showNextImage = () => {
+      currentIndex =
+        currentIndex < zoomEnabledImages.length - 1 ? currentIndex + 1 : 0;
+      const nextImg = zoomEnabledImages[currentIndex];
+      openModal(nextImg);
+    };
 
-      document.getElementsByClassName("close")[0].onclick = closeModal;
-      document.getElementsByClassName("prev")[0].onclick = showPrevImage;
-      document.getElementsByClassName("next")[0].onclick = showNextImage;
+    document.getElementsByClassName("close")[0].onclick = closeModal;
+    document.getElementsByClassName("prev")[0].onclick = showPrevImage;
+    document.getElementsByClassName("next")[0].onclick = showNextImage;
 
-      modal.onclick = (event) => {
-        if (event.target === modal) {
-          closeModal();
-        }
-      };
-    }
+    modal.onclick = (event) => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    };
   });
 
   console.log("Gallery component loaded");

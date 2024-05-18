@@ -5,7 +5,7 @@ import GalleryComp from "../components/gallerycomp.astro";
 import { getGallery } from "../utils/sanity";
 
 // Fetch the gallery data
-const gallery = await getGallery();
+const gallery = await getGallery("");
 ---
 
 <Layout title="Gallery">
