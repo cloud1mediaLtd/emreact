@@ -25,6 +25,8 @@ console.log("Gallery component props:", images, zoom);
 <!-- Modal for zoomed image -->
 <div id="zoomModal" class="modal">
   <span class="close">&times;</span>
+  <span class="prev">&#10094;</span>
+  <span class="next">&#10095;</span>
   <img class="modal-content" id="zoomedImage" />
   <div id="caption"></div>
 </div>
@@ -54,7 +56,6 @@ console.log("Gallery component props:", images, zoom);
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.9);
   }
 
@@ -93,6 +94,34 @@ console.log("Gallery component props:", images, zoom);
     text-decoration: none;
     cursor: pointer;
   }
+
+  .prev,
+  .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    transition: 0.6s ease;
+    user-select: none;
+  }
+
+  .prev {
+    left: 0;
+  }
+
+  .next {
+    right: 0;
+  }
+
+  .prev:hover,
+  .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
 </style>
 
 <script is:inline>
@@ -101,32 +130,54 @@ console.log("Gallery component props:", images, zoom);
     console.log("Zoom enabled: ", zoomEnabled);
     if (zoomEnabled) {
       const zoomEnabledImages = document.querySelectorAll(".zoom-enabled");
+      const modal = document.getElementById("zoomModal");
+      const modalImg = document.getElementById("zoomedImage");
+      const captionText = document.getElementById("caption");
+      let currentIndex = 0;
+
       console.log("Zoom-enabled images:", zoomEnabledImages);
 
-      zoomEnabledImages.forEach((img) => {
+      zoomEnabledImages.forEach((img, index) => {
         img.addEventListener("click", () => {
           console.log("Image clicked:", img.src); // Log when an image is clicked
-          const modal = document.getElementById("zoomModal");
-          const modalImg = document.getElementById("zoomedImage");
-          const captionText = document.getElementById("caption");
-
-          modal.style.display = "block";
-          modalImg.src = img.src;
-          captionText.innerHTML = img.alt;
-
-          const span = document.getElementsByClassName("close")[0];
-          span.onclick = function () {
-            modal.style.display = "none";
-          };
-
-          // Close modal when clicking outside the image
-          modal.onclick = function (event) {
-            if (event.target === modal) {
-              modal.style.display = "none";
-            }
-          };
+          currentIndex = index;
+          openModal(img);
         });
       });
+
+      const openModal = (img) => {
+        modal.style.display = "block";
+        modalImg.src = img.src;
+        captionText.innerHTML = img.alt;
+      };
+
+      const closeModal = () => {
+        modal.style.display = "none";
+      };
+
+      const showPrevImage = () => {
+        currentIndex =
+          currentIndex > 0 ? currentIndex - 1 : zoomEnabledImages.length - 1;
+        const prevImg = zoomEnabledImages[currentIndex];
+        openModal(prevImg);
+      };
+
+      const showNextImage = () => {
+        currentIndex =
+          currentIndex < zoomEnabledImages.length - 1 ? currentIndex + 1 : 0;
+        const nextImg = zoomEnabledImages[currentIndex];
+        openModal(nextImg);
+      };
+
+      document.getElementsByClassName("close")[0].onclick = closeModal;
+      document.getElementsByClassName("prev")[0].onclick = showPrevImage;
+      document.getElementsByClassName("next")[0].onclick = showNextImage;
+
+      modal.onclick = (event) => {
+        if (event.target === modal) {
+          closeModal();
+        }
+      };
     }
   });
 
