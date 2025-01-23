@@ -1,3 +1,9 @@
+switch to shopify 
+
+grit vending machine 
+
+
+
 # Astro Starter Kit: Minimal
 
 ```
